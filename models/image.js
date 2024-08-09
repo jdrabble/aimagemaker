@@ -29,6 +29,12 @@ const imageSchema = new Schema(
     imageDescription: {
       type: String,
     },
+    downloadedImageName: {
+      type: String,
+    },
+    downloadedImagePath: {
+      type: String,
+    },
     rating: [ratingSchema],
     user: {
       type: Schema.Types.ObjectId,

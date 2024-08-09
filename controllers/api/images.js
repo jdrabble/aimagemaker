@@ -9,11 +9,8 @@ const openai = new OpenAI({
 });
 
 const makeImage = async (req, res) => {
-  console.log("make image prompt", req.body.prompt);
-  console.log("User id sent in create token", req.user._id);
-
-  let image_url;
-  let description;
+  // console.log("make image prompt", req.body.prompt);
+  // console.log("User id sent in create token", req.user._id);
 
   try {
     const response = await openai.images.generate({
@@ -23,29 +20,32 @@ const makeImage = async (req, res) => {
       size: "1024x1024",
     });
 
-    image_url = response.data[0].url;
-    description = response.data[0].revised_prompt;
+    const image_url = response.data[0].url;
+    const description = response.data[0].revised_prompt;
 
-    // const imageUrl = response.data[0].url;
-    // const imageName = `${Date.now()}_${req.user._id}_${Math.floor(Math.random() * 1000000) + 1}`;
+    // const imageName = `${Date.now()}_${req.user._id}_${
+    //   Math.floor(Math.random() * 1000000) + 1
+    // }`;
     // const savePath = path.resolve(
     //   __dirname,
     //   `../../src/images/${imageName}.jpg`
     // );
 
-    // downloadImage(imageUrl, savePath)
+    // downloadImage(image_url, savePath)
     //   .then(() => {
-    //     console.log("Image downloaded successfully!");
+    //     console.log("Image downloaded successfully!", imageName, savePath);
     //   })
     //   .catch((err) => {
     //     console.error("Error downloading the image:", err);
     //   });
 
-    let data = {
+    const data = {
       user: req.user._id,
       prompt: req.body.prompt,
       imageLink: image_url,
       imageDescription: description,
+      // downloadedImageName: imageName,
+      // downloadedImagePath: savePath,
     };
 
     await Image.create(data); //save to database
