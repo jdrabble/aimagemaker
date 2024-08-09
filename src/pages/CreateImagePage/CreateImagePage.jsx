@@ -69,6 +69,9 @@ export default function CreateImagePage({ user }) {
       const data = await response.json();
      
       setaiImageUrl(data.ai_data);
+      
+      setMessage(""); // clear message
+      
       setIsImageGenerated(true);
 
     } catch (error) {

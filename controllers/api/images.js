@@ -30,7 +30,7 @@ const makeImage = async (req, res) => {
     // const imageName = `${Date.now()}_${req.user._id}_${Math.floor(Math.random() * 1000000) + 1}`;
     // const savePath = path.resolve(
     //   __dirname,
-    //   `../../downloads/${imageName}.jpg`
+    //   `../../src/images/${imageName}.jpg`
     // );
 
     // downloadImage(imageUrl, savePath)
